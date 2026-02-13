@@ -5,6 +5,8 @@ const heartLoader = document.querySelector(".cssload-main");
 const yesBtn = document.querySelector(".js-yes-btn");
 const noBtn = document.querySelector(".js-no-btn");
 
+let yesScale = 1.05;
+
 // /change the postion of no button
 noBtn.addEventListener("mouseover", () => {
   const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
@@ -13,14 +15,10 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.left = `${newX}px`;
   noBtn.style.top = `${newY}px`;
 
-  const computedStyle = getComputedStyle(yesBtn);
-  const currentPaddingLeft = parseFloat(computedStyle.paddingLeft) || 10;
-  const currentPaddingRight = parseFloat(computedStyle.paddingRight) || 10;
-  const currentFontSize = parseFloat(computedStyle.fontSize) || 16;
-
-  yesBtn.style.paddingLeft = `${currentPaddingLeft * 2}px`;
-  yesBtn.style.paddingRight = `${currentPaddingRight * 2}px`;
-  yesBtn.style.fontSize = `${currentFontSize * 2}px`;
+  // Raddoppia la scala mantenendo il centro nella stessa posizione
+  yesScale *= 2;
+  yesBtn.style.transform = `scale(${yesScale})`;
+  yesBtn.style.zIndex = "9999";
 });
 
 // yes button functionality
